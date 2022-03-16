@@ -1,0 +1,18 @@
+{
+    "name": "com.apanloon.test-package",
+    "version": "0.0.1",
+    "displayName": "Apans Test Package",
+    "description": "This package was created to test of packages are made",
+    "unity": "2020.3",
+    "unityRelease": "30f1",
+    "documentationUrl": "https://github.com/ApanLoon/unitypackage-test/wiki",
+    "licensesUrl": "https://github.com/ApanLoon/unitypackage-test/blob/main/LICENSE",
+    "keywords": [
+      "test"
+    ],
+    "author": {
+      "name": "Apan Loon",
+      "url": "https://github.com/ApanLoon"
+    }
+  }
+  
