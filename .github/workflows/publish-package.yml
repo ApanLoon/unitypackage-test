@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com@ApanLoon'
+          scope: ''
       - run: cat $RUNNER_TEMP/.npmrc
       # - run: npm install
       #   working-directory: ${{ env.working-directory }}
