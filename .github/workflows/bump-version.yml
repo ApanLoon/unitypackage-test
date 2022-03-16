@@ -20,8 +20,8 @@ jobs:
 
       - name: Bump version
         working-directory: ${{ env.working-directory }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm version patch
-          git add package.json
-          git commit -m '[RELEASE] %s'
+          npm version patch -m '[RELEASE] %s'
           git push
