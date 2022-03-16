@@ -15,6 +15,8 @@ on:
 jobs:
   publish-package:
     runs-on: ubuntu-latest
+    env:
+      working-directory: src/unitypackage-test/Packages/com.apanloon.test-package
 
     steps:
       - uses: actions/checkout@v2
@@ -24,10 +26,11 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com@ApanLoon'
-      - run: cd src/unitypackage-test/Packages/com.apanloon.test-package
-      - run: pwd
-      - run: npm install
+        working-directory: ${{enc.working-directory}}
+      #- run: npm install
       - run: npm ci
+        working-directory: ${{enc.working-directory}}
       - run: npm publish
+        working-directory: ${{enc.working-directory}}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
