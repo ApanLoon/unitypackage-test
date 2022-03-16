@@ -18,12 +18,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Trick npm to commit and tag
+        working-directory: ${{ env.working-directory }}
+        run: mkdir .git
+
       - name: Bump version
+        working-directory: ${{ env.working-directory }}
+        run: npm version patch -m '[RELEASE] %s'
+
+      - name: Check status
+        working-directory: ${{ env.working-directory }}
+        run: git status
+
+      - name: Push
         working-directory: ${{ env.working-directory }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mkdir .git                          # Trick npm to commit and tag
-        run: |
-          npm version patch -m '[RELEASE] %s'
-          git status
-          git push
+        run: git push
