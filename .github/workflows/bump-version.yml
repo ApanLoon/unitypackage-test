@@ -23,6 +23,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm version patch -m '[RELEASE] %s'
+          npm version patch -m '[RELEASE] %s' --git-tag-version
           git status
           git push --follow-tags
