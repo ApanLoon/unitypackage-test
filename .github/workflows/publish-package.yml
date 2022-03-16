@@ -28,8 +28,8 @@ jobs:
           registry-url: 'https://npm.pkg.github.com@ApanLoon'
       - run: npm install
       - run: npm ci
-        working-directory: ${{enc.working-directory}}
+        working-directory: ${{ env.working-directory }}
       - run: npm publish
-        working-directory: ${{enc.working-directory}}
+        working-directory: ${{ env.working-directory }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
