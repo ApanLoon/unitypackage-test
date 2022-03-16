@@ -13,6 +13,10 @@
     "author": {
       "name": "Apan Loon",
       "url": "https://github.com/ApanLoon"
+    },
+    "repository":"https://github.com/ApanLoon/unitypackage-test",
+    "publishConfig": {
+      "registry":"https://npm.pkg.github.com"
     }
   }
   
