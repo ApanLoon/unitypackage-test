@@ -25,6 +25,7 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com@ApanLoon'
       - run: cd src/unitypackage-test/Packages/com.apanloon.test-package
+      - run: pwd
       - run: npm install
       - run: npm ci
       - run: npm publish
