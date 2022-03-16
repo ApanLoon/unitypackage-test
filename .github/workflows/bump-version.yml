@@ -24,4 +24,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm version patch -m '[RELEASE] %s'
-          git push
+          git push --follow-tags
