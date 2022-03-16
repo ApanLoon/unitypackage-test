@@ -22,6 +22,5 @@ jobs:
         working-directory: ${{ env.working-directory }}
         run: |
           npm version patch -m '[RELEASE] %s'
-          cat package.json
-          git status
+          git add package.json
           git push
