@@ -51,8 +51,8 @@ jobs:
           # I don't know if this does anything - if I don't specify this in publish-config it appears to default to https://registry.npmjs.org/
           registry-url: 'https://npm.pkg.github.com'
 
-#      - run: npm install
-#        working-directory: ${{ env.working-directory }}
+      - run: npm install
+        working-directory: ${{ env.working-directory }}
 
       - run: npm ci
         working-directory: ${{ env.working-directory }}
