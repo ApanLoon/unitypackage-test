@@ -1,0 +1,26 @@
+name: Bump version
+on:
+  push:
+    branches: [ main, test-action ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  publish-package:
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+    env:
+      working-directory: src/unitypackage-test/Packages/com.apanloon.test-package
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Bump version
+        working-directory: ${{ env.working-directory }}
+        run: |
+          npm version patch -m '[RELEASE] %s'
+          cat package.json
+          git push
