@@ -21,6 +21,7 @@ jobs:
       - name: Bump version
         working-directory: ${{ env.working-directory }}
         run: |
-          npm version patch -m '[RELEASE] %s'
+          npm version patch
           git add package.json
+          git commit -m '[RELEASE] %s'
           git push
