@@ -1,6 +1,6 @@
 {
     "name": "@ApanLoon/com.apanloon.test-package",
-    "version": "0.0.2",
+    "version": "0.0.0",
     "displayName": "Apans Test Package",
     "description": "This package was created to test of packages are made",
     "unity": "2020.3",
