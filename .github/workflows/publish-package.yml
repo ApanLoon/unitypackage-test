@@ -13,18 +13,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
+  publish-package:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build archive
-        run: zip -r com.apanloon.test-package.zip src/unitypackage-test/Packages/com.apanloon.test-package 
-          
-      - name: Publish archive
-        run: |
-          ls -l
-          unzip -l com.apanloon.test-package.zip
-          ls -l
-          echo Completed!
+      # Setup .npmrc file to publish to GitHub Packages
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://npm.pkg.github.com@ApanLoon'
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
