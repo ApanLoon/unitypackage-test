@@ -31,12 +31,12 @@ jobs:
       - run: npm install
         working-directory: ${{ env.working-directory }}
 
-      - run: npm version patch -m '[RELEASE] %s'
+      - name: Bump version
         working-directory: ${{ env.working-directory }}
-      - run: cat package.json
-        working-directory: ${{ env.working-directory }}
-      - run: git push
-        working-directory: ${{ env.working-directory }}
+        run: |
+          npm version patch -m '[RELEASE] %s'
+          cat package.json
+          git push
 
       - run: npm ci
         working-directory: ${{ env.working-directory }}
