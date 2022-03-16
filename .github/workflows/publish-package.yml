@@ -1,9 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Publish package
-
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main, test-action ]
   pull_request:
@@ -15,7 +11,7 @@ on:
 jobs:
   publish-package:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+    if: "startsWith(github.event.head_commit.message, '[RELEASE]')"
     env:
       working-directory: src/unitypackage-test/Packages/com.apanloon.test-package
 
@@ -28,15 +24,8 @@ jobs:
           node-version: '16.x'
           # I don't know if this does anything - if I don't specify this in publish-config it appears to default to https://registry.npmjs.org/
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm install
-        working-directory: ${{ env.working-directory }}
-
-      - name: Bump version
-        working-directory: ${{ env.working-directory }}
-        run: |
-          npm version patch -m '[RELEASE] %s'
-          cat package.json
-          git push
+#      - run: npm install
+#        working-directory: ${{ env.working-directory }}
 
       - run: npm ci
         working-directory: ${{ env.working-directory }}
