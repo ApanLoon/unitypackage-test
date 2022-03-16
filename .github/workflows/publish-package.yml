@@ -15,6 +15,7 @@ on:
 jobs:
   publish-package:
     runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     env:
       working-directory: src/unitypackage-test/Packages/com.apanloon.test-package
 
@@ -27,12 +28,16 @@ jobs:
           node-version: '16.x'
           # I don't know if this does anything - if I don't specify this in publish-config it appears to default to https://registry.npmjs.org/
           registry-url: 'https://npm.pkg.github.com'
-      - run: cat $RUNNER_TEMP/.npmrc
       - run: npm install
         working-directory: ${{ env.working-directory }}
-      - run: npm ci
-        working-directory: ${{ env.working-directory }}
-      - run: npm publish
-        working-directory: ${{ env.working-directory }}
-        env:
-            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Bumping version
+        run: npm version patch -m "[RELEASE] %s"
+          working-directory: ${{ env.working-directory }}
+        run: git push
+      - name: Publish
+        run: npm ci
+          working-directory: ${{ env.working-directory }}
+        run: npm publish
+          working-directory: ${{ env.working-directory }}
+          env:
+              NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
