@@ -26,11 +26,12 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com@ApanLoon'
-      - run: npm install
-        working-directory: ${{ env.working-directory }}
-      - run: npm ci
-        working-directory: ${{ env.working-directory }}
-      - run: npm publish
-        working-directory: ${{ env.working-directory }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: ls -al
+      # - run: npm install
+      #   working-directory: ${{ env.working-directory }}
+      # - run: npm ci
+      #   working-directory: ${{ env.working-directory }}
+      # - run: npm publish
+      #   working-directory: ${{ env.working-directory }}
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
