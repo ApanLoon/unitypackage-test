@@ -1,5 +1,5 @@
 {
-    "name": "com.apanloon.test-package",
+    "name": "@ApanLoon/com.apanloon.test-package",
     "version": "0.0.1",
     "displayName": "Apans Test Package",
     "description": "This package was created to test of packages are made",
