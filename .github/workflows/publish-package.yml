@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build archive
-        run: com.apanloon.test-package.zip qzip src/unitypackage-test/Packages/com.apanloon.test-package 
+        run: zip com.apanloon.test-package.zip src/unitypackage-test/Packages/com.apanloon.test-package 
           
       - name: Publish archive
         run: |
