@@ -22,6 +22,11 @@ jobs:
         working-directory: ${{ env.working-directory }}
         run: mkdir .git
 
+      - name: Specify user
+        run: |
+          git config --global user.email "no-email@example.com"
+          git config --global user.name "GitHub Action"
+
       - name: Bump version
         working-directory: ${{ env.working-directory }}
         run: npm version patch -m '[RELEASE] %s'
