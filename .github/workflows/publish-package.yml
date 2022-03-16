@@ -13,16 +13,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Build archive
-        run: zip src/unitypackage-test/Packages/com.apanloon.test-package com.apanloon.test-package.zip
+        run: com.apanloon.test-package.zip qzip src/unitypackage-test/Packages/com.apanloon.test-package 
           
       - name: Publish archive
         run: |
+          ls -l
+          unzip -l com.apanloon.test-package.zip
           ls -l
           echo Completed!
