@@ -29,9 +29,9 @@ jobs:
       - run: cat $RUNNER_TEMP/.npmrc
       # - run: npm install
       #   working-directory: ${{ env.working-directory }}
-      # - run: npm ci
-      #   working-directory: ${{ env.working-directory }}
-      # - run: npm publish
-      #   working-directory: ${{ env.working-directory }}
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm ci
+         working-directory: ${{ env.working-directory }}
+      - run: npm publish
+          working-directory: ${{ env.working-directory }}
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
