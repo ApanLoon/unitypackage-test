@@ -22,8 +22,8 @@ jobs:
         working-directory: ${{ env.working-directory }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mkdir .git                          # Trick npm to commit and tag
         run: |
-          mkdir .git                          # Trick npm to commit and tag
           npm version patch -m '[RELEASE] %s'
           git status
           git push
