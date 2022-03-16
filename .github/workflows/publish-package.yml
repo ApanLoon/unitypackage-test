@@ -25,6 +25,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
+          # I don't know if this does anything - if I don't specify this in publish-config it appears to default to 
           registry-url: 'https://npm.pkg.github.com'
       - run: cat $RUNNER_TEMP/.npmrc
       - run: npm install
