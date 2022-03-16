@@ -1,11 +1,7 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Publish package
-
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ main, test-action ]
   pull_request:
     branches: [ main ]
 
@@ -15,6 +11,7 @@ on:
 jobs:
   publish-package:
     runs-on: ubuntu-latest
+    if: "startsWith(github.event.head_commit.message, '[RELEASE]')"
     env:
       working-directory: src/unitypackage-test/Packages/com.apanloon.test-package
 
@@ -25,13 +22,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
-          registry-url: 'https://npm.pkg.github.com@ApanLoon'
-      - run: ls -al ~
-      # - run: npm install
-      #   working-directory: ${{ env.working-directory }}
-      # - run: npm ci
-      #   working-directory: ${{ env.working-directory }}
-      # - run: npm publish
-      #   working-directory: ${{ env.working-directory }}
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # I don't know if this does anything - if I don't specify this in publish-config it appears to default to https://registry.npmjs.org/
+          registry-url: 'https://npm.pkg.github.com'
+#      - run: npm install
+#        working-directory: ${{ env.working-directory }}
+
+      - run: npm ci
+        working-directory: ${{ env.working-directory }}
+      - run: npm publish
+        working-directory: ${{ env.working-directory }}
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
