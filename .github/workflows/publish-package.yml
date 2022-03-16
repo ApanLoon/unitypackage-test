@@ -30,9 +30,11 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
       - run: npm install
         working-directory: ${{ env.working-directory }}
+
       - run: npm version patch -m "[RELEASE] %s"
         working-directory: ${{ env.working-directory }}
       - run: git push
+      
       - run: npm ci
         working-directory: ${{ env.working-directory }}
       - run: npm publish
