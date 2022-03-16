@@ -31,11 +31,11 @@ jobs:
       - run: npm install
         working-directory: ${{ env.working-directory }}
       - run: npm version patch -m "[RELEASE] %s"
-          working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.working-directory }}
       - run: git push
       - run: npm ci
-          working-directory: ${{ env.working-directory }}
+        working-directory: ${{ env.working-directory }}
       - run: npm publish
-          working-directory: ${{ env.working-directory }}
-          env:
-              NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{ env.working-directory }}
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
